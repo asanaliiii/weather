@@ -1,0 +1,60 @@
+<style>
+    .weather-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 28px;
+        padding: 30px 25px;
+        text-align: center;
+        color: #ffffff;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+    .search-container { display: flex; gap: 10px; margin-bottom: 20px; }
+    .search-container input {
+        flex: 1; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 12px 16px; border-radius: 14px; color: white; font-size: 0.95rem; outline: none;
+    }
+    .search-btn {
+        background: #3498db; border: none; width: 45px; height: 45px; border-radius: 14px;
+        color: white; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .location-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .location-title i { color: #ff7675; }
+    .sub-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.5); margin-bottom: 20px; }
+    .weather-info { display: flex; flex-direction: column; align-items: center; }
+    .weather-icon {
+        font-size: 4.5rem; background: linear-gradient(135deg, #fff, #86e3ce);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px;
+    }
+    .temp { font-size: 4rem; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+    .status { font-size: 1.1rem; font-weight: 300; color: rgba(255, 255, 255, 0.9); margin-bottom: 25px; }
+    .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+    .metrics-grid .water-panel { grid-column: span 2; background: rgba(52, 152, 219, 0.12); border: 1px solid rgba(52, 152, 219, 0.25); }
+    .metric-box { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+    .metric-box i { font-size: 1.3rem; color: #86e3ce; }
+    .metric-box.water-panel i { color: #3498db; }
+    .metric-label { font-size: 0.7rem; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); }
+    .metric-value { font-size: 1rem; font-weight: 600; }
+    .metric-sub { font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); }
+    .loading-spinner { display: inline-block; width: 30px; height: 30px; border: 3px solid rgba(255,255,255,0.2); border-radius: 50%; border-top-color: #fff; animation: spin 1s linear infinite; margin: 20px 0; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-msg { color: #ff7675; font-size: 0.95rem; margin: 15px 0; }
+    .geo-btn { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.15); padding: 12px; border-radius: 14px; cursor: pointer; font-size: 0.9rem; font-weight: 500; margin-top: 15px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+</style>
+
+<div class="weather-card">
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Введите город (напр. Астана)">
+        <button class="search-btn" id="search-submit"><i class="bi bi-search"></i></button>
+    </div>
+
+    <div id="main-content">
+        <div class="loading-spinner"></div>
+        <p style="color: rgba(255,255,255,0.6)">Инициализация модулей...</p>
+    </div>
+
+    <button class="geo-btn" id="geo-back-btn">
+        <i class="bi bi-geo-alt-fill"></i> Моя геопозиция
+    </button>
+</div>
